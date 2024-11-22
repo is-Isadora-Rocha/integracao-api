@@ -3,9 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemModule } from './item/item.module';
+import { ItemController } from './item/item.controller';
+import { ItemService } from './item/item.service';
 
 @Module({
-  imports: [
+  imports: [/* 
     //conexão postgresql
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -29,9 +31,9 @@ import { ItemModule } from './item/item.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ItemModule,
+    ItemModule, */
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [ItemController],
+  providers: [ItemService],
 })
 export class AppModule {}
