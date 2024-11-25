@@ -32,12 +32,12 @@ export class ItemService {
         const postgresItems = await this.getPostgresItems();
         const mysqlItems = await this.getMysqlItems();
 
-        const newItems = postgresItems.filter(
-            (pgItem) => !mysqlItems.some((myItem) => myItem.id == pgItem.id),
+        const newItems = postgresItems.filter( //filtrar no banco pg
+            (pgItem) => !mysqlItems.some((myItem) => myItem.id == pgItem.id), //item que está no pg, mas não no mysql
         );
 
         for (const item of newItems) {
-            await this.addToMysql(item);
+            await this.addToMysql(item); //add, um por um, item que está faltando no mysql do pg
         }
 
         return {
